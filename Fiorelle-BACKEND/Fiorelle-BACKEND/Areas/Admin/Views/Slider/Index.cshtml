@@ -1,0 +1,72 @@
+﻿@model List<SliderVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .status-slider{
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+    }
+
+    .status-true{
+        background: greenyellow;
+    }
+
+    .status-false{
+        background: red;
+    }
+</style>
+
+<div class="container">
+    <div class="create-btn my-3">
+        <a href="#" type="button" class="btn btn-success btn-rounded btn-fw">Create</a>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Image
+                    </th>
+                    <th>
+                        Create Date
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="py-1">
+                            <img src="~/img/@item.Image" alt="image" style="width:75px; height:75px"/>
+                        </td>
+                        <td>
+                            Herman Beck
+                        </td>
+                        <td>
+                            <div class="status-slider @(item.Status ? "status-true" : "status-false")"></div>
+                        </td>
+                        <td>
+                            <a asp-action="Detail" asp-route-id="@item.Id" type="button" class="btn btn-primary btn-rounded btn-fw">Detail</a>
+                            <a href="#" type="button" class="btn btn-warning btn-rounded btn-fw">Edit</a>
+                            <a href="#" type="button" class="btn btn-danger btn-rounded btn-fw">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
